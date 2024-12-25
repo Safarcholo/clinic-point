@@ -1,0 +1,122 @@
+{
+  "name": "clinic-point",
+  "displayName": "Clinic Point",
+  "version": "1.0.0",
+  "homepage": "./",
+  "private": true,
+  "main": "public/electron.js",
+  "dependencies": {
+    "@date-io/date-fns": "^2.17.0",
+    "@emotion/react": "^11.13.5",
+    "@emotion/styled": "^11.13.5",
+    "@fullcalendar/core": "^6.1.15",
+    "@fullcalendar/daygrid": "^6.1.15",
+    "@fullcalendar/interaction": "^6.1.15",
+    "@fullcalendar/react": "^6.1.15",
+    "@fullcalendar/timegrid": "^6.1.15",
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.0.18",
+    "@mui/icons-material": "^5.14.15",
+    "@mui/lab": "^5.0.0-alpha.149",
+    "@mui/material": "^5.14.15",
+    "@mui/x-date-pickers": "^6.20.2",
+    "@mui/x-date-pickers-pro": "^7.23.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "autoprefixer": "^10.4.20",
+    "axios": "^1.6.2",
+    "date-fns": "^2.30.0",
+    "framer-motion": "^10.16.4",
+    "papaparse": "^5.4.1",
+    "postcss": "^8.4.49",
+    "react": "^18.2.0",
+    "react-big-calendar": "^1.16.3",
+    "react-dom": "^18.2.0",
+    "react-error-boundary": "^4.0.11",
+    "react-icons": "^4.12.0",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-scripts": "5.0.1",
+    "react-virtualized-auto-sizer": "^1.0.24",
+    "react-window": "^1.8.10",
+    "sentry": "^0.1.0",
+    "source-map-explorer": "^2.5.3",
+    "tailwindcss": "^3.4.15",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron-dev": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron": "electron .",
+    "build:win": "npm run build && node scripts/prepare-build.js && electron-builder --win",
+    "build:win-portable": "npm run build && electron-builder --win portable",
+    "copy-electron": "node scripts/prepare-build.js",
+    "electron-pack": "npm run build && electron-builder -c.extraMetadata.main=build/electron.prod.js",
+    "pack": "electron-builder -c.extraMetadata.main=build/electron.prod.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/papaparse": "^5.3.15",
+    "concurrently": "^8.2.2",
+    "copyfiles": "^2.4.1",
+    "cross-env": "^7.0.3",
+    "electron": "^27.1.0",
+    "electron-builder": "^24.13.3",
+    "electron-is-dev": "^2.0.0",
+    "fs-extra": "^11.2.0",
+    "png-to-ico": "^2.1.8",
+    "sharp": "^0.32.1",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.clinicpoint",
+    "productName": "Clinic Point",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "public",
+      "output": "dist"
+    },
+    "extraMetadata": {
+      "main": "build/electron.prod.js"
+    },
+    "asar": true,
+    "asarUnpack": [
+      "build/electron.prod.js",
+      "build/Medicalwp-Medical-Syringe-blue.ico"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "public/Medicalwp-Medical-Syringe-blue.ico"
+    }
+  }
+}
